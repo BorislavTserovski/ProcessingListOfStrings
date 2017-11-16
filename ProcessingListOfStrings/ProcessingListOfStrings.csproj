@@ -45,9 +45,11 @@
     <Compile Include="Commands\AppendCommand.cs" />
     <Compile Include="Commands\CountCommand.cs" />
     <Compile Include="Commands\DeleteCommand.cs" />
+    <Compile Include="Commands\EndCommand.cs" />
     <Compile Include="Commands\InsertCommand.cs" />
     <Compile Include="Commands\PrependCommand.cs" />
     <Compile Include="Commands\ReverseCommand.cs" />
+    <Compile Include="Commands\RollCommand.cs" />
     <Compile Include="Commands\SortCommand.cs" />
     <Compile Include="Contracts\ICommand.cs" />
     <Compile Include="StartUp.cs" />
