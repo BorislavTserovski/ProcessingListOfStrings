@@ -9,6 +9,7 @@ namespace ProcessingListOfStrings
 {
     public class StartUp
     {
+        private const string commandsnamespace = "ProcessingListOfStrings.Commands";
         public static void Main()
         {
             List<string> initialList = Console.ReadLine()
@@ -33,7 +34,7 @@ namespace ProcessingListOfStrings
                     continue;
                 }
                 string concreteCommandName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(command) + "Command";
-                Type commandType = Type.GetType($"ProcessingListOfStrings.Commands.{concreteCommandName}");
+                Type commandType = Type.GetType($"{commandsnamespace}.{concreteCommandName}");
                 ICommand concreteCommand = (ICommand)Activator.CreateInstance(commandType);
                 concreteCommand.Execute(initialList, args);
                 if (command == "end" && args.Count == 1)
