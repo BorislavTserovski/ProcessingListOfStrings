@@ -1,10 +1,7 @@
 ﻿using ProcessingListOfStrings.Common;
 using ProcessingListOfStrings.Contracts;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ProcessingListOfStrings.Commands
 {
@@ -12,7 +9,7 @@ namespace ProcessingListOfStrings.Commands
     {
         public void Execute(List<string> listToProcess, List<string> inputArgs)
         {
-            if (inputArgs.Count != 2)
+            if (inputArgs.Count != 2||string.IsNullOrWhiteSpace(inputArgs[1]))
             {
                 Exceptions.InvalidCommandParametersException();
             }
@@ -20,8 +17,7 @@ namespace ProcessingListOfStrings.Commands
             {
                 string stringToAppend = inputArgs[1];
                 listToProcess.Add(stringToAppend);
-                List<string> result = listToProcess;
-                Results.JoinList(result);
+                Results.JoinList(listToProcess);
             }
         }
     }

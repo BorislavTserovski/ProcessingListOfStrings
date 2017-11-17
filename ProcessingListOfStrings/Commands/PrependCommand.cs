@@ -18,8 +18,7 @@ namespace ProcessingListOfStrings.Commands
             {
                 string stringToPrepend = inputArgs[1];
                 listToProcess.Insert(0, stringToPrepend);
-                List<string> result = listToProcess;
-                Results.JoinList(result);
+                Results.JoinList(listToProcess);
             }
         }
     }

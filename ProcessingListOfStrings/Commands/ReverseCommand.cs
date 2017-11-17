@@ -17,8 +17,7 @@ namespace ProcessingListOfStrings.Commands
             else
             {
                 listToProcess.Reverse();
-                List<string> result = listToProcess;
-                Results.JoinList(result);
+                Results.JoinList(listToProcess);
             }
         }
     }

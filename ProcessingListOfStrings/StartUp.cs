@@ -31,7 +31,8 @@ namespace ProcessingListOfStrings
 
             while (true)
             {
-                List<string> args = commandLine.Split(' ').ToList();
+                List<string> args = commandLine.Split(new[] {' '},
+                    StringSplitOptions.RemoveEmptyEntries).ToList();
                 string command = args[0];
 
                 if (!allowedCommands.Contains(command))
