@@ -1,4 +1,5 @@
-﻿using ProcessingListOfStrings.Contracts;
+﻿using ProcessingListOfStrings.Common;
+using ProcessingListOfStrings.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +14,14 @@ namespace ProcessingListOfStrings.Commands
         {
             if (inputArgs.Count != 2)
             {
-                Console.WriteLine("Error: invalid command parameters");
+                Exceptions.InvalidCommandParametersException();
             }
             else
             {
                 string stringToAppend = inputArgs[1];
                 listToProcess.Add(stringToAppend);
                 List<string> result = listToProcess;
-                Console.WriteLine(String.Join(" ", result));
+                Results.JoinList(result);
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using ProcessingListOfStrings.Contracts;
+﻿using ProcessingListOfStrings.Common;
+using ProcessingListOfStrings.Contracts;
 using System;
 using System.Collections.Generic;
 
@@ -12,7 +13,7 @@ namespace ProcessingListOfStrings.Commands
         {
             if (inputArgs.Count != 2)
             {
-                Console.WriteLine("Error: invalid command parameters");
+               Exceptions.InvalidCommandParametersException();
             }
             else
             {
@@ -26,7 +27,7 @@ namespace ProcessingListOfStrings.Commands
                         counter++;
                     }
                 }
-                Console.WriteLine(counter);
+                Results.PrintCounter(counter);
             }
         }
     }

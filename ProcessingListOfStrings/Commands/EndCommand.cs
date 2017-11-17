@@ -1,4 +1,5 @@
-﻿using ProcessingListOfStrings.Contracts;
+﻿using ProcessingListOfStrings.Common;
+using ProcessingListOfStrings.Contracts;
 using System;
 using System.Collections.Generic;
 
@@ -11,11 +12,11 @@ namespace ProcessingListOfStrings.Commands
         {
             if (inputArgs.Count != 1)
             {
-                Console.WriteLine("Ërror: invalid command parameters");
+               Exceptions.InvalidCommandParametersException();
             }
             else
             {
-                Console.WriteLine("Finished");
+                Results.EndResult();
             }
         }
     }

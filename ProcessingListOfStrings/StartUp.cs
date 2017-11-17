@@ -1,4 +1,5 @@
-﻿using ProcessingListOfStrings.Contracts;
+﻿using ProcessingListOfStrings.Common;
+using ProcessingListOfStrings.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -9,17 +10,22 @@ namespace ProcessingListOfStrings
 {
     public class StartUp
     {
-        private const string commandsnamespace = "ProcessingListOfStrings.Commands";
+        private const string CommandsNameSpace = "ProcessingListOfStrings.Commands";
+        private const string CommandsSuffix = "Command";
+
         public static void Main()
         {
             List<string> initialList = Console.ReadLine()
                 .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
                 .ToList();
-            Console.WriteLine(String.Join(" ", initialList));
+
+            Results.JoinList(initialList);
 
             //If you want to add a new command, add it here as well!
-            List<string> allowedCommands = new List<string> { "append", "prepend", "reverse", "insert", "delete", "roll"
-            , "sort", "count", "end"};
+            List<string> allowedCommands = new List<string>
+            { "append", "prepend", "reverse",
+                "insert", "delete", "roll",
+                "sort", "count", "end"};
 
             string commandLine = Console.ReadLine();
 
@@ -27,20 +33,24 @@ namespace ProcessingListOfStrings
             {
                 List<string> args = commandLine.Split(' ').ToList();
                 string command = args[0];
+
                 if (!allowedCommands.Contains(command))
                 {
-                    Console.WriteLine("Error: invalid command");
+                    Exceptions.InvalidCommandException();
                     commandLine = Console.ReadLine();
                     continue;
                 }
-                string concreteCommandName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(command) + "Command";
-                Type commandType = Type.GetType($"{commandsnamespace}.{concreteCommandName}");
+
+                string concreteCommandName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(command) + CommandsSuffix;
+                Type commandType = Type.GetType($"{CommandsNameSpace}.{concreteCommandName}");
                 ICommand concreteCommand = (ICommand)Activator.CreateInstance(commandType);
                 concreteCommand.Execute(initialList, args);
+
                 if (command == "end" && args.Count == 1)
                 {
                     break;
                 }
+
                 commandLine = Console.ReadLine();
             }
 

@@ -1,4 +1,5 @@
-﻿using ProcessingListOfStrings.Contracts;
+﻿using ProcessingListOfStrings.Common;
+using ProcessingListOfStrings.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace ProcessingListOfStrings.Commands
         {
             if (inputArgs.Count != 3)
             {
-                Console.WriteLine("Error: invalid command parameters");
+                Exceptions.InvalidCommandParametersException();
             }
             else
             {
@@ -20,18 +21,18 @@ namespace ProcessingListOfStrings.Commands
                 bool isNumber = int.TryParse(inputArgs[1], out index);
                 if (!isNumber)
                 {
-                    Console.WriteLine($"Error: invalid command parameters");
+                    Exceptions.InvalidCommandParametersException();
                 }
                 else
                 {
                     if (listToProcess.ElementAtOrDefault(index) != null)
                     {
                         listToProcess.Insert(index, inputArgs[2]);
-                        Console.WriteLine(String.Join(" ", listToProcess));
+                        Results.JoinList(listToProcess);
                     }
                     else
                     {
-                        Console.WriteLine($"Error: invalid index {inputArgs[1]}");
+                        Exceptions.InvalidIndexException(index);
                     }
                 }
             }

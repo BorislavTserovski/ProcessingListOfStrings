@@ -1,4 +1,5 @@
-﻿using ProcessingListOfStrings.Contracts;
+﻿using ProcessingListOfStrings.Common;
+using ProcessingListOfStrings.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace ProcessingListOfStrings.Commands
         {
             if (inputArgs.Count != 2)
             {
-                Console.WriteLine("Error: invalid command parameters");
+               Exceptions.InvalidCommandParametersException();
             }
             else
             {
@@ -21,18 +22,18 @@ namespace ProcessingListOfStrings.Commands
                     string first = listToProcess[0];
                     listToProcess.RemoveAt(0);
                     listToProcess.Add(first);
-                    Console.WriteLine(String.Join(" ", listToProcess));
+                    Results.JoinList(listToProcess);
                 }
                 else if (inputArgs[1] == "right")
                 {
                     string last = listToProcess.Last();
                     listToProcess.RemoveAt(listToProcess.Count - 1);
                     listToProcess.Insert(0, last);
-                    Console.WriteLine(String.Join(" ", listToProcess));
+                    Results.JoinList(listToProcess);
                 }
                 else
                 {
-                    Console.WriteLine("Error: invalid command parameters");
+                    Exceptions.InvalidCommandParametersException();
                 }
             }
         }
